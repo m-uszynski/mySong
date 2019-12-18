@@ -9,4 +9,7 @@
     <string name="add_action">Add song</string>
     <string name="menu_search">Search</string>
     <string name="menu_clear_search">Clear search</string>
+    <string name="title_label">Title:</string>
+    <string name="authors_label">Authors:</string>
+    <string name="text_label">Text:</string>
 </resources>

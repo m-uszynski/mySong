@@ -41,7 +41,6 @@ public class AddEditActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_IDD)){
             idd = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_IDD);
-            Log.d("abc",idd.toString());
         }
 
         if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_TITLE)){

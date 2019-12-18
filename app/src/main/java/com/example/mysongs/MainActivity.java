@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_SONG_ACTIVITY_REQUEST_CODE = 1;
     public static final int EDIT_SONG_ACTIVITY_REQUEST_CODE = 2;
+    public static final int DETAILS_SONG_ACTIVITY_REQUEST_CODE = 3;
 
     public static final String EXTRA_EDIT_SONG_IDD = "editIdd";
     public static final String EXTRA_EDIT_SONG_TITLE = "editTitle";
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Title and authors can't be empty",Toast.LENGTH_LONG).show();
             }
             else{
-                
+
             }
         }
     }
@@ -148,7 +149,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            // details
+            Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+            intent.putExtra(EXTRA_EDIT_SONG_IDD,song.get_id());
+            if(song.getTitle()!=null) intent.putExtra(EXTRA_EDIT_SONG_TITLE,song.getTitle());
+            if(song.getAuthors()!=null) intent.putExtra(EXTRA_EDIT_SONG_AUTHORS,song.getAuthors());
+            if(song.getText()!=null) intent.putExtra(EXTRA_EDIT_SONG_TEXT,song.getText());
+            if(song.getYtlink()!=null) intent.putExtra(EXTRA_EDIT_SONG_YTUR,song.getYtlink());
+            startActivityForResult(intent, DETAILS_SONG_ACTIVITY_REQUEST_CODE);
         }
 
         @Override

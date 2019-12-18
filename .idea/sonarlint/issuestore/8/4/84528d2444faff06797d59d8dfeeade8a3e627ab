@@ -1,0 +1,13 @@
+
+Hsquid:S00108{")Either remove or fill this block of code.(á¢–¬8©ĞÄ¹ñ-
+[squid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ú•Ã²ñ-
+bsquid:UselessImportCheck"2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ8ÓñÕ´ñ-
+Hsquid:S00108o")Either remove or fill this block of code.(á¢–¬8˜Ä¹ñ-
+†squid:S3252Ù"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(à‚Ş¦8…ë¡¹ñ-
+Zsquid:UselessImportCheck!"/Remove this unused import 'retrofit2.Retrofit'.(ŠĞİ8ñ¾ù±ñ-
+…squid:S3252i"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(ß×™Å8™ç†·ñ-
+†squid:S3252ë"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(à‚Ş¦8…ë¡¹ñ-
+Nsquid:S1905ñ"/Remove this unnecessary cast to "RecyclerView".(ú—Ë…8…ë¡¹ñ-
+nsquid:S1301Z"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8¨„’·ñ-
+Šsquid:S3252u"gUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_LONG".(â·£Ÿûÿÿÿÿ8Ó¸ñ-
+lsquid:MaximumInheritanceDepth#"<This class has 6 parents which is greater than 5 authorized.(²Ú±8àŸó®ñ-
