@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
 
     private static Retrofit retrofit;
-    public static final String BASE_URL = "http://82.139.172.100:8080/";
+    public static final String BASE_URL = "https://mysong-c639.restdb.io/rest/";
 
     public static Retrofit getRetrofitInstance(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -23,6 +23,6 @@ public class RetrofitInstance {
                     .build();
         }
         return retrofit;
-    }
 
+    }
 }
