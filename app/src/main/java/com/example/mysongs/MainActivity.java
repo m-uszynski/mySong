@@ -35,6 +35,13 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_SONG_ACTIVITY_REQUEST_CODE = 1;
+    public static final int EDIT_SONG_ACTIVITY_REQUEST_CODE = 2;
+
+    public static final String EXTRA_EDIT_SONG_IDD = "editIdd";
+    public static final String EXTRA_EDIT_SONG_TITLE = "editTitle";
+    public static final String EXTRA_EDIT_SONG_AUTHORS = "editAuthors";
+    public static final String EXTRA_EDIT_SONG_TEXT = "editText";
+    public static final String EXTRA_EDIT_SONG_YTUR = "editYTur";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,14 +105,30 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(R.id.main_view),"Song added!",Snackbar.LENGTH_LONG).show();
                 getSongsData();
             }
-            else{
+            else if(resultCode == 2){
                 Toast.makeText(getApplicationContext(),"Title and authors can't be empty",Toast.LENGTH_LONG).show();
+            }
+            else{
+
+            }
+        }
+        if(requestCode == EDIT_SONG_ACTIVITY_REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                Snackbar.make(findViewById(R.id.main_view),"Song edited!",Snackbar.LENGTH_LONG).show();
+                getSongsData();
+            }
+            else if(resultCode == 2){
+                Toast.makeText(getApplicationContext(), "Title and authors can't be empty",Toast.LENGTH_LONG).show();
+            }
+            else{
+                
             }
         }
     }
 
-    private class SongHolder extends RecyclerView.ViewHolder{
+    private class SongHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
+        private Song song;
         private TextView songTitleTextView;
         private TextView songAuthorsTextView;
 
@@ -113,11 +136,31 @@ public class MainActivity extends AppCompatActivity {
             super(v);
             songTitleTextView = v.findViewById(R.id.song_title);
             songAuthorsTextView = v.findViewById(R.id.song_authors);
+            v.setOnClickListener(this);
+            v.setOnLongClickListener(this);
         }
 
         public void bind(Song song){
+            this.song = song;
             songTitleTextView.setText(song.getTitle());
             songAuthorsTextView.setText(song.getAuthors());
+        }
+
+        @Override
+        public void onClick(View v) {
+            // details
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            Intent intent = new Intent(MainActivity.this, AddEditActivity.class);
+            intent.putExtra(EXTRA_EDIT_SONG_IDD,song.get_id());
+            if(song.getTitle()!=null) intent.putExtra(EXTRA_EDIT_SONG_TITLE,song.getTitle());
+            if(song.getAuthors()!=null) intent.putExtra(EXTRA_EDIT_SONG_AUTHORS,song.getAuthors());
+            if(song.getText()!=null) intent.putExtra(EXTRA_EDIT_SONG_TEXT,song.getText());
+            if(song.getYtlink()!=null) intent.putExtra(EXTRA_EDIT_SONG_YTUR,song.getYtlink());
+            startActivityForResult(intent, EDIT_SONG_ACTIVITY_REQUEST_CODE);
+            return true;
         }
     }
 

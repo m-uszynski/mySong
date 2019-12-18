@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -33,6 +34,32 @@ public class AddEditActivity extends AppCompatActivity {
         songAuthors = findViewById(R.id.edit_song_authors);
         songText = findViewById(R.id.edit_song_text);
         songYTur = findViewById(R.id.edit_song_ur);
+
+        // if edit
+
+        String idd;
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_IDD)){
+            idd = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_IDD);
+            Log.d("abc",idd.toString());
+        }
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_TITLE)){
+            songTitle.setText(getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_TITLE));
+        }
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_AUTHORS)){
+            songAuthors.setText(getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_AUTHORS));
+        }
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_TEXT)){
+            songText.setText(getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_TEXT));
+        }
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_YTUR)){
+            songYTur.setText(getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_YTUR));
+        }
+
     }
 
     @Override
@@ -50,6 +77,7 @@ public class AddEditActivity extends AppCompatActivity {
 
         switch(id){
             case R.id.action_cancel:
+                setResult(RESULT_CANCELED,replyIntent);
                 break;
 
             case R.id.action_add:
@@ -58,16 +86,27 @@ public class AddEditActivity extends AppCompatActivity {
                 String text = songText.getText().toString();
                 String YTUr = null;
                 if(!TextUtils.isEmpty(songYTur.getText())){
-                     YTUr = "https://www.youtube.com/watch?v=" + songYTur.getText().toString();
+                     YTUr = songYTur.getText().toString();
                 }
+
                 if(TextUtils.isEmpty(title) || TextUtils.isEmpty(authors)){
-                    setResult(RESULT_CANCELED, replyIntent);
+                    setResult(2, replyIntent);
                 }
                 else{
-                    Song song = new Song(0,title,authors,text,YTUr);
-                    addSong(song);
-                    setResult(RESULT_OK, replyIntent);
+
+                    if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_IDD)){
+                        String idd = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_IDD);
+                        Song song = new Song(0,title,authors,text,YTUr);
+                        editSong(idd,song);
+                        setResult(RESULT_OK, replyIntent);
+                    }
+                    else {
+                        Song song = new Song(0, title, authors, text, YTUr);
+                        addSong(song);
+                        setResult(RESULT_OK, replyIntent);
+                    }
                 }
+
                 break;
 
         }
@@ -78,6 +117,21 @@ public class AddEditActivity extends AppCompatActivity {
     private void addSong(Song song){
         SongService songService = RetrofitInstance.getRetrofitInstance().create(SongService.class);
         Call<Song> call = songService.addSong(song);
+        call.enqueue(new Callback<Song>() {
+            @Override
+            public void onResponse(Call<Song> call, Response<Song> response) {
+                Song song1 = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<Song> call, Throwable t) {
+            }
+        });
+    }
+
+    private void editSong(String id, Song song){
+        SongService songService = RetrofitInstance.getRetrofitInstance().create(SongService.class);
+        Call<Song> call = songService.editSong(id,song);
         call.enqueue(new Callback<Song>() {
             @Override
             public void onResponse(Call<Song> call, Response<Song> response) {

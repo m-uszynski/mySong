@@ -3,6 +3,8 @@ package com.example.mysongs;
 import com.google.gson.annotations.SerializedName;
 
 public class Song {
+    @SerializedName("_id")
+    private String _id;
     @SerializedName("id")
     private Integer id;
     @SerializedName("title")
@@ -21,6 +23,8 @@ public class Song {
         this.text = text;
         this.ytlink = ytlink;
     }
+
+    public String get_id() { return _id; }
 
     public Integer getId() {
         return id;
