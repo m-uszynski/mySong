@@ -32,5 +32,5 @@ public interface SongService {
             "x-apikey: cbe90756e49360003e811c098343e61c43059",
             "cache-control: no-cache"
     })
-    Call<List<Song>> getSongs(@Query("q") String query);
+    Call<List<Song>> getSongs(@Query("filter") String filter);
 }

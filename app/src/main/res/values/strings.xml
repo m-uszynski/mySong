@@ -7,4 +7,6 @@
     <string name="hint_song_urHelper">(...url)</string>
     <string name="cancel_action">Cancel</string>
     <string name="add_action">Add song</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_clear_search">Clear search</string>
 </resources>

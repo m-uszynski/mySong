@@ -8,11 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +51,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+
+        MenuItem searchItem = menu.findItem(R.id.menu_item_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getSongsData(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menu_item_clear:
+                getSongsData();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -135,12 +174,35 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void getSongsData(String filter){
+        String finalQuery = prepareQuery(filter);
+        SongService songService = RetrofitInstance.getRetrofitInstance().create(SongService.class);
+        Call<List<Song>> bookApiCall = songService.getSongs(finalQuery);
+
+        bookApiCall.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                setupSongListView(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>> call, Throwable t) {
+                Snackbar.make(findViewById(R.id.main_view),"Something went wrong...",Snackbar.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void setupSongListView(List<Song> songs){
         RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.recyclerview);
         final SongAdapter adapter = new SongAdapter();
         adapter.setSongs(songs);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private String prepareQuery(String query){
+        String[] queryParts = query.split("\\s+");
+        return TextUtils.join("+",queryParts);
     }
 
 }
