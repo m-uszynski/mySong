@@ -14,4 +14,5 @@
     <string name="text_label">Text:</string>
     <string name="hint_song_emptyText">There is no lyrics for this song</string>
     <string name="thumbnail_description">Thumbnail description...</string>
+    <string name="menu_refresh">Refresh</string>
 </resources>

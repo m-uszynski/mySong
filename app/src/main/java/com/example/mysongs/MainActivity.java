@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
+            case R.id.menu_item_refresh:
+                Toast.makeText(getApplicationContext(),"Song refreshing...",Toast.LENGTH_LONG).show();
             case R.id.menu_item_clear:
                 getSongsData();
                 return true;
