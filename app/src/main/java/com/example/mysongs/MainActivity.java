@@ -17,12 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,11 +143,13 @@ public class MainActivity extends AppCompatActivity {
         private Song song;
         private TextView songTitleTextView;
         private TextView songAuthorsTextView;
+        private ImageView songThumbnail;
 
         public SongHolder(@NonNull View v) {
             super(v);
             songTitleTextView = v.findViewById(R.id.song_title);
             songAuthorsTextView = v.findViewById(R.id.song_authors);
+            songThumbnail = v.findViewById(R.id.img_thumbnail);
             v.setOnClickListener(this);
             v.setOnLongClickListener(this);
         }
@@ -154,6 +158,16 @@ public class MainActivity extends AppCompatActivity {
             this.song = song;
             songTitleTextView.setText(song.getTitle());
             songAuthorsTextView.setText(song.getAuthors());
+            if(song.getYtlink()!=null){
+                Log.d("MainActivity","https://img.youtube.com/vi/"+ this.song.getYtlink() +"/0.jpg");
+                Picasso.with(itemView.getContext())
+                        .load("https://img.youtube.com/vi/"+ this.song.getYtlink() +"/0.jpg")
+                        .placeholder(R.drawable.ic_music_note_black)
+                        .into(songThumbnail);
+            }
+            else{
+                songThumbnail.setImageResource(R.drawable.ic_music_note_black);
+            }
         }
 
         @Override
