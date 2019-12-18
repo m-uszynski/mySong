@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 getSongsData(query);
+                searchView.setQuery("",false);
+                searchView.setIconified(true);
                 return true;
             }
 
