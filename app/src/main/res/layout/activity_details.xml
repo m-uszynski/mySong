@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_book"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsActivity">
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/img_thumbnail"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/thumbnail_description"
+        android:scaleType="centerInside"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,59 +24,73 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/details_value_margin_top">
 
             <TextView
                 android:id="@+id/titleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/title_label" />
+                android:text="@string/title_label"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/param_font_size"/>
 
             <TextView
                 android:id="@+id/titleValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/details_value_padding_left_right"
+                android:paddingRight="@dimen/details_value_padding_left_right"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/details_value_margin_top">
 
             <TextView
                 android:id="@+id/authorsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/authors_label" />
+                android:text="@string/authors_label"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/param_font_size"/>
 
             <TextView
                 android:id="@+id/authorsValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/details_value_padding_left_right"
+                android:paddingRight="@dimen/details_value_padding_left_right"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/details_value_margin_top">
 
             <TextView
                 android:id="@+id/textLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/text_label" />
+                android:text="@string/text_label"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/param_font_size"/>
 
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="@dimen/add_edit_edit_text_margin"
+                android:layout_marginRight="@dimen/add_edit_edit_text_margin"
+                android:layout_marginTop="@dimen/scrollview_margin_top_down"
+                android:layout_marginBottom="@dimen/scrollview_margin_top_down"
                 android:layout_weight="1"
                 android:fillViewport="true">
 
@@ -79,7 +103,7 @@
                     android:ems="10"
                     android:fontFamily="sans-serif-light"
                     android:gravity="start|top"
-                    android:hint="@string/hint_song_text"
+                    android:hint="@string/hint_song_emptyText"
                     android:importantForAutofill="no"
                     android:padding="@dimen/add_edit_edit_text_padding"
                     android:textSize="@dimen/add_edit_text_edit_size" />
@@ -88,4 +112,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

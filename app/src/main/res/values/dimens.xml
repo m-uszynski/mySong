@@ -7,4 +7,8 @@
     <dimen name="add_edit_edit_text_padding">20dp</dimen>
     <dimen name="add_edit_edit_text_margin">15dp</dimen>
     <dimen name="add_edit_text_edit_size">18sp</dimen>
+    <dimen name="param_font_size">18sp</dimen>
+    <dimen name="details_value_padding_left_right">10dp</dimen>
+    <dimen name="details_value_margin_top">10dp</dimen>
+    <dimen name="scrollview_margin_top_down">10dp</dimen>
 </resources>

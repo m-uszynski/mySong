@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +25,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView songTitle;
     private TextView songAuthors;
     private TextView songText;
-    private TextView songYTur;
+    private ImageView songThumbnails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
         songTitle = findViewById(R.id.titleValue);
         songAuthors = findViewById(R.id.authorsValue);
         songText = findViewById(R.id.text_value);
+        songThumbnails = findViewById(R.id.img_thumbnail);
 
         if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_TITLE)){
             songTitle.setText(getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_TITLE));
@@ -42,6 +48,25 @@ public class DetailsActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_TEXT)){
             songText.setText(getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_TEXT));
+        }
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_YTUR)){
+
+            String uri = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_YTUR);
+
+            if(checkNullOrEmpty(uri)){
+            String url = "https://img.youtube.com/vi/"+ getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_YTUR) +"/0.jpg";
+            Picasso.with(this)
+                    .load(url)
+                    .placeholder(R.drawable.ic_music_note_black)
+                    .into(songThumbnails);
+            }
+            else{
+                songThumbnails.setImageResource(R.drawable.ic_music_note_black);
+            }
+        }
+        else{
+            songThumbnails.setImageResource(R.drawable.ic_music_note_black);
         }
 
     }
@@ -86,5 +111,9 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean checkNullOrEmpty(String text){
+        return text != null && !TextUtils.isEmpty(text);
     }
 }

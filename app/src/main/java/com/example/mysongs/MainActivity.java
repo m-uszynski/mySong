@@ -158,8 +158,7 @@ public class MainActivity extends AppCompatActivity {
             this.song = song;
             songTitleTextView.setText(song.getTitle());
             songAuthorsTextView.setText(song.getAuthors());
-            if(song.getYtlink()!=null){
-                Log.d("MainActivity","https://img.youtube.com/vi/"+ this.song.getYtlink() +"/0.jpg");
+            if(checkNullOrEmpty(song.getYtlink())){
                 Picasso.with(itemView.getContext())
                         .load("https://img.youtube.com/vi/"+ this.song.getYtlink() +"/0.jpg")
                         .placeholder(R.drawable.ic_music_note_black)
@@ -278,6 +277,10 @@ public class MainActivity extends AppCompatActivity {
     private String prepareQuery(String query){
         String[] queryParts = query.split("\\s+");
         return TextUtils.join("+",queryParts);
+    }
+
+    private boolean checkNullOrEmpty(String text){
+        return text != null && !TextUtils.isEmpty(text);
     }
 
 }

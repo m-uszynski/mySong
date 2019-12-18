@@ -12,4 +12,6 @@
     <string name="title_label">Title:</string>
     <string name="authors_label">Authors:</string>
     <string name="text_label">Text:</string>
+    <string name="hint_song_emptyText">There is no lyrics for this song</string>
+    <string name="thumbnail_description">Thumbnail description...</string>
 </resources>
