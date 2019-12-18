@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -43,5 +44,13 @@ public interface SongService {
             "cache-control: no-cache"
     })
     Call<Song> editSong(@Path("id") String id, @Body Song song);
+
+    @DELETE("songs/{id}")
+    @Headers({
+            "content-type: application/json",
+            "x-apikey: cbe90756e49360003e811c098343e61c43059",
+            "cache-control: no-cache"
+    })
+    Call<Song> deleteSong(@Path("id") String id);
 
 }

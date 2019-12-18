@@ -125,6 +125,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+        if(requestCode == DETAILS_SONG_ACTIVITY_REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                Snackbar.make(findViewById(R.id.main_view),"Song deleted!",Snackbar.LENGTH_LONG).show();
+                getSongsData();
+            }
+            else{
+
+            }
+        }
     }
 
     private class SongHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
