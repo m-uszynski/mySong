@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">mySongs</string>
+    <string name="hint_song_title">Title (required)</string>
+    <string name="hint_song_authors">Author(s) (required)</string>
+    <string name="hint_song_text">Text</string>
+    <string name="textview_youtube">https://www.youtube.com/watch?v=</string>
+    <string name="hint_song_urHelper">(...url)</string>
+    <string name="cancel_action">Cancel</string>
+    <string name="add_action">Add song</string>
 </resources>

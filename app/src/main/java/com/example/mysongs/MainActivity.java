@@ -6,13 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -25,11 +29,38 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int NEW_SONG_ACTIVITY_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSongsData();
+
+        FloatingActionButton addSongButton = findViewById(R.id.add_button);
+        addSongButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddEditActivity.class);
+                startActivityForResult(intent,NEW_SONG_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == NEW_SONG_ACTIVITY_REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                Snackbar.make(findViewById(R.id.main_view),"Song added!",Snackbar.LENGTH_LONG).show();
+                getSongsData();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Title and authors can't be empty",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private class SongHolder extends RecyclerView.ViewHolder{

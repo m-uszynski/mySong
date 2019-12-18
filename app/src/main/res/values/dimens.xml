@@ -3,4 +3,8 @@
     <dimen name="cardview_padding">10dp</dimen>
     <dimen name="cardview_corner_radius">10dp</dimen>
     <dimen name="cardview_elevation">6dp</dimen>
+    <dimen name="addbutton_right_bottom_padding">10dp</dimen>
+    <dimen name="add_edit_edit_text_padding">20dp</dimen>
+    <dimen name="add_edit_edit_text_margin">15dp</dimen>
+    <dimen name="add_edit_text_edit_size">18sp</dimen>
 </resources>
