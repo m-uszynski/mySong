@@ -6,7 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,7 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     public static final int NEW_SONG_ACTIVITY_REQUEST_CODE = 1;
     public static final int EDIT_SONG_ACTIVITY_REQUEST_CODE = 2;
@@ -45,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_EDIT_SONG_AUTHORS = "editAuthors";
     public static final String EXTRA_EDIT_SONG_TEXT = "editText";
     public static final String EXTRA_EDIT_SONG_YTUR = "editYTur";
+
+    private SensorManager sensorManager;
+    private Sensor sensor;
+    private float mAccel;
+    private float mAccelCurrent;
+    private float mAccelLast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +71,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,NEW_SONG_ACTIVITY_REQUEST_CODE);
             }
         });
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        mAccel = 0.00f;
+        mAccelCurrent = SensorManager.GRAVITY_EARTH;
+        mAccelLast = SensorManager.GRAVITY_EARTH;
+
+        if(sensor==null){
+            Toast.makeText(getApplicationContext(),"No accelerometer - shake feature off!",Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -138,6 +160,41 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(sensor!=null){
+            sensorManager.registerListener(this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        int sensorType = event.sensor.getType();
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+        mAccelLast = mAccelCurrent;
+        mAccelCurrent = (float) Math.sqrt((double)(x*x+y*y+z*z));
+        float delta = mAccelCurrent - mAccelLast;
+        mAccel = mAccel * 0.9f + delta;
+
+        if(mAccel>5){
+            Toast.makeText(getApplicationContext(), "SHAKE",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 
     private class SongHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{

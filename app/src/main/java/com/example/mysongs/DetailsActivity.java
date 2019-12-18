@@ -3,7 +3,10 @@ package com.example.mysongs;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -75,12 +78,32 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.details_menu,menu);
+
+        MenuItem item = menu.findItem(R.id.action_play);
+
+        if(getIntent().hasExtra(MainActivity.EXTRA_EDIT_SONG_YTUR)){
+            String uri = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_YTUR);
+            if(checkNullOrEmpty(uri)){
+                item.setEnabled(true);
+                item.setVisible(true);
+            }
+            else{
+                item.setEnabled(false);
+                item.setVisible(false);
+            }
+        }
+        else{
+            item.setEnabled(false);
+            item.setVisible(false);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent replyIntent = new Intent();
+
         switch(item.getItemId()){
             case R.id.action_delete:
                 String idd = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_IDD);
@@ -91,6 +114,10 @@ public class DetailsActivity extends AppCompatActivity {
             case R.id.action_cancel:
                 setResult(RESULT_CANCELED,replyIntent);
                 finish();
+                return true;
+            case R.id.action_play:
+                String ytUrl = getIntent().getExtras().getString(MainActivity.EXTRA_EDIT_SONG_YTUR);
+                watchYoutubeVideo(this,ytUrl);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -115,5 +142,17 @@ public class DetailsActivity extends AppCompatActivity {
 
     private boolean checkNullOrEmpty(String text){
         return text != null && !TextUtils.isEmpty(text);
+    }
+
+    public static void watchYoutubeVideo(Context context, String id){
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+id));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
+        try{
+            context.startActivity(appIntent);
+        }
+        catch(ActivityNotFoundException ex){
+            Log.d("DetailsActivity",ex.toString());
+            context.startActivity(webIntent);
+        }
     }
 }
