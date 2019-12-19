@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/margin_left_right_add_edit"
+    android:layout_marginRight="@dimen/margin_left_right_add_edit">
+
+    <EditText
+        android:id="@+id/edit_song_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_song_title"
+        android:inputType="textAutoComplete"
+        android:padding="@dimen/add_edit_edit_text_padding"
+        android:layout_marginBottom="@dimen/add_edit_edit_text_margin"
+        android:layout_marginTop="@dimen/add_edit_edit_text_margin"
+        android:textSize="@dimen/add_edit_text_edit_size"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/edit_song_authors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_song_authors"
+        android:inputType="textAutoComplete"
+        android:padding="@dimen/add_edit_edit_text_padding"
+        android:layout_marginBottom="@dimen/add_edit_edit_text_margin"
+        android:layout_marginTop="@dimen/add_edit_edit_text_margin"
+        android:textSize="@dimen/add_edit_text_edit_size"
+        android:importantForAutofill="no" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/add_edit_edit_text_margin"
+        android:layout_marginTop="@dimen/margin_left_right_add_edit"
+        android:layout_marginRight="@dimen/add_edit_edit_text_margin"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <EditText
+            android:id="@+id/edit_song_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/add_edit_edit_text_margin"
+            android:layout_marginBottom="@dimen/add_edit_edit_text_margin"
+            android:ems="10"
+            android:fontFamily="sans-serif-light"
+            android:gravity="start|top"
+            android:hint="@string/hint_song_text"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/add_edit_edit_text_padding"
+            android:textSize="@dimen/add_edit_text_edit_size" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/add_edit_edit_text_padding">
+
+        <TextView
+            android:id="@+id/textview_youtube"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/textview_youtube" />
+
+        <EditText
+            android:id="@+id/edit_song_ur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/hint_song_urHelper"
+            android:importantForAutofill="no"
+            android:inputType="textAutoComplete"
+            android:padding="@dimen/add_edit_edit_text_padding"
+            android:textSize="@dimen/add_edit_text_edit_size" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,27 +9,38 @@ app.use(cors());
 app.use(express.json());
 
 // MySQL Configuration
-var mysql = require('mysql');
-var con = mysql.createConnection({
-    host: "remotemysql.com",
-    database: "qewTevNSN7",
-    user: "qewTevNSN7",
-    password: "3pNWfu5kSQ"
-});
+// var mysql = require('mysql');
+// var con = mysql.createConnection({
+//     host: "remotemysql.com",
+//     database: "qewTevNSN7",
+//     user: "qewTevNSN7",
+//     password: "3pNWfu5kSQ"
+// });
 
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected with database!");
-})
+// con.connect(function (err) {
+//     if (err) throw err;
+//     console.log("Connected with database!");
+// })
 
 // API Functions
 
+var songs = [
+    {
+        id: 1,
+        title: "siema",
+        authors: "elo",
+        text: "hehehe",
+        ytlink: "blabla"
+    }
+]
+
 app.get('/songs', function (req, res) {
     // res.send("Hello world is working");
-    con.query("SELECT * FROM songs", function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-    })
+    // con.query("SELECT * FROM songs", function (err, result, fields) {
+    //     if (err) throw err;
+    //     res.send(result);
+    // })
+    res.send(songs);
 });
 
 app.post('/songs', (req, res) => {

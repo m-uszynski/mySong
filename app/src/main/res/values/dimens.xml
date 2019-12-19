@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardview_padding">10dp</dimen>
+    <dimen name="cardview_corner_radius">10dp</dimen>
+    <dimen name="cardview_elevation">6dp</dimen>
+    <dimen name="addbutton_right_bottom_padding">10dp</dimen>
+    <dimen name="add_edit_edit_text_padding">20dp</dimen>
+    <dimen name="add_edit_edit_text_margin">15dp</dimen>
+    <dimen name="add_edit_text_edit_size">18sp</dimen>
+    <dimen name="param_font_size">18sp</dimen>
+    <dimen name="details_value_padding_left_right">10dp</dimen>
+    <dimen name="details_value_margin_top">10dp</dimen>
+    <dimen name="scrollview_margin_top_down">10dp</dimen>
+    <dimen name="margin_left_right_add_edit">20dp</dimen>
+    <dimen name="thumbnail_size">100dp</dimen>
+    <dimen name="imageview_margin_start">25dp</dimen>
+    <dimen name="title_font_size">18sp</dimen>
+    <dimen name="authors_font_size">14sp</dimen>
+</resources>

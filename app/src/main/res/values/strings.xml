@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">mySongs</string>
+    <string name="hint_song_title">Title (required)</string>
+    <string name="hint_song_authors">Author(s) (required)</string>
+    <string name="hint_song_text">Text</string>
+    <string name="textview_youtube">https://www.youtube.com/watch?v=</string>
+    <string name="hint_song_urHelper">(...url)</string>
+    <string name="cancel_action">Cancel</string>
+    <string name="add_action">Add song</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_clear_search">Clear search</string>
+    <string name="title_label">Title:</string>
+    <string name="authors_label">Authors:</string>
+    <string name="text_label">Text:</string>
+    <string name="hint_song_emptyText">There is no lyrics for this song</string>
+    <string name="thumbnail_description">Thumbnail description...</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="play_action">Play in YouTube</string>
+    <string name="no_accelerometer">No accelerometer - shake feature off!</string>
+    <string name="song_refresh">Song refreshing...</string>
+    <string name="song_added">Song added!</string>
+    <string name="title_authors_error">Title and authors can\'t be empty</string>
+    <string name="song_edited">Song edited!</string>
+    <string name="song_deleted">Song deleted!</string>
+    <string name="something_wrong">Something went wrong...</string>
+    <string name="image_view_description">Book description</string>
+</resources>
