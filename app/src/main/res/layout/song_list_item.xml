@@ -15,21 +15,23 @@
 
         <ImageView
             android:id="@+id/img_thumbnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/thumbnail_size"
+            android:layout_height="@dimen/thumbnail_size"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="@dimen/imageview_margin_start"
             android:scaleType="centerInside"
-            android:contentDescription="Book cover"/>
+            android:contentDescription="@string/image_view_description"/>
 
         <TextView
             android:id="@+id/song_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="@dimen/imageview_margin_start"
             android:textAppearance="?attr/textAppearanceListItem"
             android:layout_toEndOf="@+id/img_thumbnail"
+            android:textSize="@dimen/title_font_size"
+            android:textColor="@color/colorPrimary"
             android:layout_alignTop="@+id/img_thumbnail"
             />
 
@@ -38,6 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/song_title"
+            android:textSize="@dimen/authors_font_size"
+            android:textColor="@color/colorGray"
             android:layout_alignStart="@+id/song_title"
             android:textAppearance="?attr/textAppearanceListItem"
             />

@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mAccelLast = SensorManager.GRAVITY_EARTH;
 
         if(sensor==null){
-            Toast.makeText(getApplicationContext(),"No accelerometer - shake feature off!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),R.string.no_accelerometer,Toast.LENGTH_LONG).show();
         }
 
     }
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.menu_item_refresh:
-                Toast.makeText(getApplicationContext(),"Song refreshing...",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),R.string.song_refresh,Toast.LENGTH_SHORT).show();
             case R.id.menu_item_clear:
                 getSongsData();
                 return true;
@@ -132,11 +132,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         if(requestCode == NEW_SONG_ACTIVITY_REQUEST_CODE){
             if(resultCode == RESULT_OK){
-                Snackbar.make(findViewById(R.id.main_view),"Song added!",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.main_view),R.string.song_added,Snackbar.LENGTH_LONG).show();
                 getSongsData();
             }
             else if(resultCode == 2){
-                Toast.makeText(getApplicationContext(),"Title and authors can't be empty",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),R.string.title_authors_error,Toast.LENGTH_LONG).show();
             }
             else{
 
@@ -144,11 +144,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         if(requestCode == EDIT_SONG_ACTIVITY_REQUEST_CODE){
             if(resultCode == RESULT_OK){
-                Snackbar.make(findViewById(R.id.main_view),"Song edited!",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.main_view),R.string.song_edited,Snackbar.LENGTH_LONG).show();
                 getSongsData();
             }
             else if(resultCode == 2){
-                Toast.makeText(getApplicationContext(), "Title and authors can't be empty",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.title_authors_error,Toast.LENGTH_LONG).show();
             }
             else{
 
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         if(requestCode == DETAILS_SONG_ACTIVITY_REQUEST_CODE){
             if(resultCode == RESULT_OK){
-                Snackbar.make(findViewById(R.id.main_view),"Song deleted!",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.main_view),R.string.song_deleted,Snackbar.LENGTH_LONG).show();
                 getSongsData();
             }
             else{
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             @Override
             public void onFailure(Call<List<Song>> call, Throwable t) {
-                Snackbar.make(findViewById(R.id.main_view),"Something went wrong...",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.main_view),R.string.something_wrong,Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -338,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             @Override
             public void onFailure(Call<List<Song>> call, Throwable t) {
-                Snackbar.make(findViewById(R.id.main_view),"Something went wrong...",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.main_view),R.string.something_wrong,Snackbar.LENGTH_LONG).show();
             }
         });
     }

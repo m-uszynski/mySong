@@ -16,4 +16,12 @@
     <string name="thumbnail_description">Thumbnail description...</string>
     <string name="menu_refresh">Refresh</string>
     <string name="play_action">Play in YouTube</string>
+    <string name="no_accelerometer">No accelerometer - shake feature off!</string>
+    <string name="song_refresh">Song refreshing...</string>
+    <string name="song_added">Song added!</string>
+    <string name="title_authors_error">Title and authors can\'t be empty</string>
+    <string name="song_edited">Song edited!</string>
+    <string name="song_deleted">Song deleted!</string>
+    <string name="something_wrong">Something went wrong...</string>
+    <string name="image_view_description">Book description</string>
 </resources>
