@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mySongs</string>
+    <string name="add_action">Dodaj piosenkę</string>
+    <string name="authors_label">Autorzy:</string>
+    <string name="cancel_action">Powrót</string>
+    <string name="hint_song_authors">Autorzy (wymagane)</string>
+    <string name="hint_song_emptyText">Nie ma słów do tej piosenki</string>
+    <string name="hint_song_text">Tekst:</string>
+    <string name="hint_song_title">Tytuł (wymagany)</string>
+    <string name="hint_song_urHelper">(...url)</string>
+    <string name="image_view_description">Opis książki</string>
+    <string name="menu_clear_search">Wyczyść wyszukiwanie</string>
+    <string name="menu_refresh">Odśwież</string>
+    <string name="menu_search">Wyszukiwanie</string>
+    <string name="no_accelerometer">Brak akcelerometru - potrząsanie wyłączone!</string>
+    <string name="play_action">Odtwórz w YouTube</string>
+    <string name="something_wrong">Coś poszło nie tak...</string>
+    <string name="song_added">Piosenka została dodana!</string>
+    <string name="song_deleted">Piosenka została usunięta!</string>
+    <string name="song_edited">Piosenka została zedytowana!</string>
+    <string name="song_refresh">Odświeżanie piosenek...</string>
+    <string name="text_label">Tekst:</string>
+    <string name="textview_youtube">https://www.youtube.com/watch?v=</string>
+    <string name="thumbnail_description">Opis zdjęcia</string>
+    <string name="title_authors_error">Tytuł i autor nie mogą być puste</string>
+    <string name="title_label">Tytuł:</string>
+</resources>
