@@ -33,6 +33,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private float mAccel;
     private float mAccelCurrent;
     private float mAccelLast;
+
+    final SongAdapter adapter = new SongAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,7 +191,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mAccel = mAccel * 0.9f + delta;
 
         if(mAccel>5){
-            Toast.makeText(getApplicationContext(), "SHAKE",Toast.LENGTH_LONG).show();
+
+            List<Song> songs = adapter.getSongs();
+            Random rand = new Random();
+            Song randomSong = songs.get(rand.nextInt(songs.size()));
+            Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.putExtra(EXTRA_EDIT_SONG_IDD,randomSong.get_id());
+            if(randomSong.getTitle()!=null) intent.putExtra(EXTRA_EDIT_SONG_TITLE,randomSong.getTitle());
+            if(randomSong.getAuthors()!=null) intent.putExtra(EXTRA_EDIT_SONG_AUTHORS,randomSong.getAuthors());
+            if(randomSong.getText()!=null) intent.putExtra(EXTRA_EDIT_SONG_TEXT,randomSong.getText());
+            if(randomSong.getYtlink()!=null) intent.putExtra(EXTRA_EDIT_SONG_YTUR,randomSong.getYtlink());
+            startActivityForResult(intent, DETAILS_SONG_ACTIVITY_REQUEST_CODE);
         }
     }
 
@@ -288,6 +302,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             this.songs = songs;
             notifyDataSetChanged();
         }
+
+        List<Song> getSongs(){
+            return this.songs;
+        }
     }
 
     private void getSongsData(){
@@ -327,7 +345,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void setupSongListView(List<Song> songs){
         RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.recyclerview);
-        final SongAdapter adapter = new SongAdapter();
         adapter.setSongs(songs);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

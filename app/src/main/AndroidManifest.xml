@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DetailsActivity"></activity>
-        <activity android:name=".AddEditActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".DetailsActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".AddEditActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
